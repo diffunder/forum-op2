@@ -1,0 +1,50 @@
+a {
+    margin-top:5%;
+    font-family: arial;
+    color: #fff;
+    margin-left: 5%; 
+    border: none;   
+    padding: 10px;
+}
+
+button {
+    width: 100px;
+    height: 30px;
+    background-color: #68534D;
+    border-radius: 4px;
+    border: 2px solid #D2D68D;
+    color: #fff;
+    margin-left: 5%;
+    font-family: arial;
+}
+
+textarea {
+    resize: none;
+    
+    font-family: arial;
+    height: 50px;
+    width: 87%;
+    margin-left: 5%; 
+    padding: 10px;
+}
+
+.like_button {
+    float: right;
+    border: 2px solid #81726A;
+}
+
+.comment {
+    border: none;
+    font-family: arial;
+    width: 87%;
+    margin-left: 5%;  
+    height: 100px;
+    padding: 10px;
+    background-color: #D2D68D;
+}
+
+.box {
+    width: 50%;
+    margin: 0 auto;
+    background-color: #81726A;
+}

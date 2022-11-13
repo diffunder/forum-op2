@@ -12,18 +12,25 @@ function setComment() {
     }
 }
 
-function getComment() {
+function getComments() {
     require("connection.php");
-    $query = "SELECT * FROM messages";
+    $query = "SELECT * FROM messages ORDER BY message_id DESC";
     $result = mysqli_query($con, $query);
-    while ($row = mysqli_fetch_assoc($result)) {
+    while ($row = mysqli_fetch_assoc($result)) {        
+        echo "<div class='comment'>
+            <div> By <b>Anonymous</b> on <i>".$row['date']."</i><br><b>".$row['message_title']."</b></div>
+            <div>".$row["message_text"]."</div>
+            <div><br>   <form method='POST' action='".likeSubmit($row)."'>  <button type='submit' name='likeSubmit' class='like_button'>Like</button>  Likes: ".$row["likes"]."</form></div>
+        </div><br>";
+    }
+}
 
-        echo "<div class='div.box'>";
-        echo "Anonymous";
-        echo "<div>";
-        echo $row['date']."<br>";
-        echo $row['message_title']."<br>";
-        echo $row['message_text']."<br>";
-        echo "<div>";
+function likeSubmit($message) {    
+    require("connection.php");
+    if(isset($_POST['likeSubmit'])) {
+    $id = $message['message_id'];
+    $likes = $message['likes']+1;
+    $query = "UPDATE messages SET likes = $likes WHERE message_id = $id";
+    $result = mysqli_query($con, $query);
     }
 }
