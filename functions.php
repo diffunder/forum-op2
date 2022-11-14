@@ -20,17 +20,21 @@ function getComments() {
         echo "<div class='comment'>
             <div> By <b>Anonymous</b> on <i>".$row['date']."</i><br><b>".$row['message_title']."</b></div>
             <div>".$row["message_text"]."</div>
-            <div><br>   <form method='POST' action='".likeSubmit($row)."'>  <button type='submit' name='likeSubmit' class='like_button'>Like</button>  Likes: ".$row["likes"]."</form></div>
+            <div><br>  <form method='POST' action='".likeSubmit($row)."'>  <button type='submit' name='likeSubmit' class='like_button'>Like</button>  Likes: ".$row["likes"]."</form></div>
         </div><br>";
     }
 }
 
-function likeSubmit($message) {    
+function likeSubmit($row) {    
     require("connection.php");
     if(isset($_POST['likeSubmit'])) {
-    $id = $message['message_id'];
-    $likes = $message['likes']+1;
-    $query = "UPDATE messages SET likes = $likes WHERE message_id = $id";
-    $result = mysqli_query($con, $query);
+        $id = $row['message_id'];
+        $likes = $row['likes']+1;
+        $query = "SELECT * FROM messages WHERE message_id = '$id' limit 1";
+        $message = mysqli_query($con, $query);
+        if (mysqli_num_rows($message) != 0) {
+            $query = "UPDATE messages SET likes = '$likes' WHERE message_id = '$id'";
+            $result = mysqli_query($con, $query);
+        }
     }
 }
