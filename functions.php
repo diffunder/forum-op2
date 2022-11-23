@@ -3,20 +3,28 @@
 function setComment() {
     require("connection.php");
     if(isset($_POST['commentSubmit'])) {
-        $date = $_POST['date'];
-        $title = $_POST['message_title'];
-        $message = $_POST['message_text'];
-
-        $query = "INSERT INTO messages (date, message_title, message_text) VALUES ('$date', '$title', '$message')";
-        $result = mysqli_query($con, $query);
+            $date = $_POST['date'];
+            $title = $_POST['message_title'];
+            $message = $_POST['message_text'];
+        if (!empty($title) && !empty ($message)) {
+            $date = $_POST['date'];
+            $title = $_POST['message_title'];
+            $message = $_POST['message_text'];
+            $query = "INSERT INTO messages (date, message_title, message_text) VALUES ('$date', '$title', '$message')";
+            $result = mysqli_query($con, $query);
+        }
+        else {
+            echo "<br><b><div class ='comment'>Please, fill out both boxes to submit your message.</div></b>";
+        }
     }
 }
 
-function getComments() {
+function getComments($page_count) {
     require("connection.php");
-    $query = "SELECT * FROM messages ORDER BY message_id DESC";
+    $page = 5+$page_count*5;
+    $query = "SELECT * FROM messages ORDER BY message_id DESC LIMIT 5 OFFSET $page";
     $result = mysqli_query($con, $query);
-    while ($row = mysqli_fetch_assoc($result)) {        
+    while ($row = mysqli_fetch_assoc($result)) {   
         echo "<div class='comment'>
             <div> By <b>Anonymous</b> on <i>".$row['date']."</i><br><b>".$row['message_title']."</b></div>
             <div>".$row["message_text"]."</div>
@@ -37,3 +45,6 @@ function likeSubmit($row) {
     }
 }
 
+function nextPage($page_count) {
+    $page_count++;
+}

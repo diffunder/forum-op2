@@ -17,13 +17,17 @@
     <div class='box'>
 
     <?php
+    
+    global $page_count;
     echo " <br><form method='POST' action='".setComment()."'>
         <input type ='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
         <a>Title:</a><br><textarea name='message_title'></textarea><br><br>
         <a>Your message:</a><br><textarea name='message_text'></textarea><br><br>
         <button type='submit' name='commentSubmit'>Comment</button>
     </form><br>";
-    getComments();
+    echo "<form action ='".nextPage($page_count)."'>
+    <button type='submit'>next page</button></form>";
+    getComments($page_count);
     ?>
     
     </div>

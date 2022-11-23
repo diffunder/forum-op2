@@ -9,7 +9,7 @@ a {
 
 button {
     width: 100px;
-    height: 30px;
+    height: 20px;
     background-color: #68534D;
     border-radius: 4px;
     border: 2px solid #D2D68D;
@@ -25,6 +25,7 @@ textarea {
     width: 87%;
     margin-left: 5%; 
     padding: 10px;
+    display: inline-block;
 }
 
 .like_button {
@@ -32,18 +33,21 @@ textarea {
     border: 2px solid #81726A;
 }
 
+
 .comment {
     border: none;
     font-family: arial;
     width: 87%;
     margin-left: 5%; 
-    height: 100px;
+    height: auto;
     padding: 10px;
     background-color: #D2D68D;
+    word-break:break-all;
 }
 
 .box {
     width: 50%;
+    
     margin: 0 auto;
     background-color: #81726A;
 }
