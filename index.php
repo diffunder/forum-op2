@@ -25,8 +25,6 @@
         <a>Your message:</a><br><textarea name='message_text'></textarea><br><br>
         <button type='submit' name='commentSubmit'>Comment</button>
     </form><br>";
-    echo "<form action ='".nextPage($page_count)."'>
-    <button type='submit'>next page</button></form>";
     getComments($page_count);
     ?>
     

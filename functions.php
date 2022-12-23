@@ -21,8 +21,7 @@ function setComment() {
 
 function getComments($page_count) {
     require("connection.php");
-    $page = 5+$page_count*5;
-    $query = "SELECT * FROM messages ORDER BY message_id DESC LIMIT 5 OFFSET $page";
+    $query = "SELECT * FROM messages ORDER BY message_id DESC LIMIT 100";
     $result = mysqli_query($con, $query);
     while ($row = mysqli_fetch_assoc($result)) {   
         echo "<div class='comment'>
@@ -43,8 +42,4 @@ function likeSubmit($row) {
         header('Location: index.php');
         exit;
     }
-}
-
-function nextPage($page_count) {
-    $page_count++;
 }
